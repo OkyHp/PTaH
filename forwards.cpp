@@ -933,7 +933,7 @@ void CForwardManager::ClientConnectPre::Init()
 		{
 			SH_MANUALHOOK_RECONFIGURE(ConnectClient, iOffset, 0, 0);
 
-			pForward = forwards->CreateForwardEx(nullptr, ET_Hook, 5, nullptr, Param_Cell, Param_String, Param_String, Param_String, Param_String, Param_Cell);
+			pForward = forwards->CreateForwardEx(nullptr, ET_Hook, 6, nullptr, Param_Cell, Param_String, Param_String, Param_String, Param_String, Param_Cell);
 		}
 		else smutils->LogError(myself, "Failed to get CBaseServer::ConnectClient offset, Hook ClientConnectPre will be unavailable.");
 	}
@@ -1054,7 +1054,7 @@ void CForwardManager::ClientConnectPost::Init()
 	{
 		SH_MANUALHOOK_RECONFIGURE(ConnectClient, iOffset, 0, 0);
 
-		pForward = forwards->CreateForwardEx(nullptr, ET_Ignore, 4, nullptr, Param_Cell, Param_Cell, Param_String, Param_String, Param_Cell);
+		pForward = forwards->CreateForwardEx(nullptr, ET_Ignore, 5, nullptr, Param_Cell, Param_Cell, Param_String, Param_String, Param_Cell);
 	}
 	else smutils->LogError(myself, "Failed to get CBaseServer::ConnectClient offset, Hook ClientConnectPost will be unavailable.");
 }
