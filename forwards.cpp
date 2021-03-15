@@ -933,7 +933,7 @@ void CForwardManager::ClientConnectPre::Init()
 		{
 			SH_MANUALHOOK_RECONFIGURE(ConnectClient, iOffset, 0, 0);
 
-			pForward = forwards->CreateForwardEx(nullptr, ET_Hook, 5, nullptr, Param_Cell, Param_String, Param_String, Param_String, Param_String);
+			pForward = forwards->CreateForwardEx(nullptr, ET_Hook, 5, nullptr, Param_Cell, Param_String, Param_String, Param_String, Param_String, Param_Cell);
 		}
 		else smutils->LogError(myself, "Failed to get CBaseServer::ConnectClient offset, Hook ClientConnectPre will be unavailable.");
 	}
@@ -1027,6 +1027,7 @@ IClient* CForwardManager::ClientConnectPre::SHHook(const netadr_t& address, int 
 		pForward->PushString(ExtractPlayerName(pSplitPlayerConnectVector));
 		pForward->PushStringEx(passwordBuffer, sizeof(passwordBuffer), SM_PARAM_STRING_UTF8 | SM_PARAM_STRING_COPY, SM_PARAM_COPYBACK);
 		pForward->PushStringEx(rejectReason, sizeof(rejectReason), SM_PARAM_STRING_UTF8 | SM_PARAM_STRING_COPY, SM_PARAM_COPYBACK);
+		pForward->PushCell(address.GetPort());
 		pForward->Execute(&res);
 
 		if (res != Pl_Continue)
@@ -1053,7 +1054,7 @@ void CForwardManager::ClientConnectPost::Init()
 	{
 		SH_MANUALHOOK_RECONFIGURE(ConnectClient, iOffset, 0, 0);
 
-		pForward = forwards->CreateForwardEx(nullptr, ET_Ignore, 4, nullptr, Param_Cell, Param_Cell, Param_String, Param_String);
+		pForward = forwards->CreateForwardEx(nullptr, ET_Ignore, 4, nullptr, Param_Cell, Param_Cell, Param_String, Param_String, Param_Cell);
 	}
 	else smutils->LogError(myself, "Failed to get CBaseServer::ConnectClient offset, Hook ClientConnectPost will be unavailable.");
 }
@@ -1118,6 +1119,7 @@ IClient* CForwardManager::ClientConnectPost::SHHook(const netadr_t& address, int
 			pForward->PushCell(SteamID->GetAccountID());
 			pForward->PushString(ipString);
 			pForward->PushString(ExtractPlayerName(pSplitPlayerConnectVector));
+			pForward->PushCell(address.GetPort());
 			pForward->Execute(nullptr);
 		}
 	}
