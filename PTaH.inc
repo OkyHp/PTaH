@@ -853,10 +853,11 @@ typeset PTaHCB
 	 * @param iAccountID    Client Steam account ID.
 	 * @param sIP           Client IP address.
 	 * @param sName         Client nickname.
+	 * @param iPort		Client connect Port.
 	 *
 	 * @noreturn
 	 */
-	function void (int iClient, int iAccountID, const char[] sIP, const char[] sName);
+	function void (int iClient, int iAccountID, const char[] sIP, const char[] sName, int iPort);
 
 	/** InventoryUpdatePost
 	 *
