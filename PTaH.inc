@@ -837,12 +837,13 @@ typeset PTaHCB
 	 * @param sName         Client nickname.
 	 * @param sPassword     Password witch he introduced.
 	 * @param sRejectReason The reason is not authorized.
+	 * @param iPort		Client connect Port.
 	 *
 	 * @return              Return Plugin_Stop or Plugin_Handled for restrict autherization client.
 	 *                      Return Plugin_Continue for allow autherization without changes.
 	 *                      Return Plugin_Changed for allow autherization with changes.
 	 */
-	function Action (int iAccountID, const char[] sIP, const char[] sName, char sPassword[128], char sRejectReason[255]);
+	function Action (int iAccountID, const char[] sIP, const char[] sName, char sPassword[128], char sRejectReason[255], int iPort);
 
 	/** ClientConnectPost
 	 *
